@@ -19,7 +19,7 @@ class AudioRepository(private val application: Application) {
         )
 
         val selection = "${MediaStore.Audio.Media.MIME_TYPE} = ?"
-        val selectionArgs = arrayOf("audio/mpeg")
+        val selectionArgs = arrayOf("audio/mp4") // TODO 张靓颖 《U&I》（m4a文件）放到了/sdcard/Music目录下，可以扫出来
         val sortOrder = MediaStore.Audio.Media.DISPLAY_NAME
 
 
@@ -46,7 +46,7 @@ class AudioRepository(private val application: Application) {
             while (cursor.moveToNext()) {
                 val id = cursor.getLong(idColumn)
                 val name = cursor.getString(nameColumn)
-                val artiste = cursor.getString(artisteColumn)
+                val artiste = cursor.getString(artisteColumn) ?: "artiste null"
                 val contentUri: Uri = ContentUris.withAppendedId(
                     MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     id
