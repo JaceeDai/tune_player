@@ -18,8 +18,8 @@ class AudioRepository(private val application: Application) {
             MediaStore.Audio.Artists.ARTIST
         )
 
-        val selection = "${MediaStore.Audio.Media.MIME_TYPE} = ?"
-        val selectionArgs = arrayOf("audio/mp4") // TODO 张靓颖 《U&I》（m4a文件）放到了/sdcard/Music目录下，可以扫出来
+        val selection = "${MediaStore.Audio.Media.MIME_TYPE} = ? OR ${MediaStore.Audio.Media.MIME_TYPE} = ? "
+        val selectionArgs = arrayOf("audio/mp4", "audio/mpeg") // TODO 张靓颖 《U&I》（m4a文件）放到了/sdcard/Music目录下，可以扫出来
         val sortOrder = MediaStore.Audio.Media.DISPLAY_NAME
 
 
